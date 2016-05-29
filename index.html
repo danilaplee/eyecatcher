@@ -106,6 +106,7 @@
                 var rightGazes      = 0;
                 var centerGazes     = 0;
                 var gazesToSwitch   = 3;
+                var switchTimer;
                 var switchImage = function(direction)
                 {
                     rightGazes = 0;
@@ -140,7 +141,7 @@
                                 {
                                     centerGazes++;
                                     // console.log('==== center gaze ====')
-                                    if(centerGazes > gazesToSwitch) setTimeout(switchImage, 1000)
+                                    if(centerGazes > gazesToSwitch) switchTimer = setTimeout(switchImage, 1000)
                                 }
                                 else
                                 {
@@ -148,13 +149,13 @@
                                     {
                                         leftGazes++;
                                         // console.log('==== left gaze ====')s
-                                        if(leftGazes > gazesToSwitch) setTimeout(switchImage, 1000, 'left')
+                                        if(leftGazes > gazesToSwitch) switchTimer = setTimeout(switchImage, 1000, 'left')
                                     }
                                     else
                                     {
                                         rightGazes++;
                                         // console.log('==== right gaze ====')
-                                        if(rightGazes > gazesToSwitch) setTimeout(switchImage, 1000, 'right')
+                                        if(rightGazes > gazesToSwitch) switchTimer = setTimeout(switchImage, 1000, 'right')
                                     }
 
                                 }
