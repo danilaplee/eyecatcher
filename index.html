@@ -127,13 +127,13 @@
                                     {
                                         leftGazes++;
                                         // console.log('==== left gaze ====')s
-                                        if(leftGazes > gazesToSwitch) switchTimer = setTimeout(switchImage, 1000, 'left')
+                                        if(leftGazes > gazesToSwitch) setTimeout(switchImage, 1000, 'left')
                                     }
                                     else
                                     {
                                         rightGazes++;
                                         // console.log('==== right gaze ====')
-                                        if(rightGazes > gazesToSwitch) switchTimer = setTimeout(switchImage, 1000, 'right')
+                                        if(rightGazes > gazesToSwitch) setTimeout(switchImage, 1000, 'right')
                                     }
 
                                 }
