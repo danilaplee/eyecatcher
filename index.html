@@ -106,6 +106,25 @@
                 var rightGazes      = 0;
                 var centerGazes     = 0;
                 var gazesToSwitch   = 3;
+                var switchImage = function(direction)
+                {
+                    rightGazes = 0;
+                    leftGazes = 0;
+                    centerGazes = 0;
+                    if(direction == 'left')
+                    {
+                        rightPart.style.display = "none"
+                        return leftPart.style.display = "inline"
+                    };
+                    if(direction == 'right')
+                    {
+                        rightPart.style.display = "inline"
+                        return leftPart.style.display = "none"
+                    }
+                    rightPart.style.display = "none"
+                    leftPart.style.display = "none"
+
+                }
 				var frameOp = function (image_data, video) 
                 {
 					var trackingData = eyeTracker.track(image_data, video);
@@ -121,15 +140,7 @@
                                 {
                                     centerGazes++;
                                     // console.log('==== center gaze ====')
-                                    if(centerGazes > gazesToSwitch)
-                                    {
-                                        rightGazes = 0;
-                                        leftGazes = 0;
-                                        centerGazes = 0;
-                                        rightPart.style.display = "none"
-                                        leftPart.style.display = "none"
-                                        centerPart.style.display = "block"
-                                    }
+                                    if(centerGazes > gazesToSwitch) setTimeout(switchImage, 1000)
                                 }
                                 else
                                 {
@@ -137,29 +148,13 @@
                                     {
                                         leftGazes++;
                                         // console.log('==== left gaze ====')s
-                                        if(leftGazes > gazesToSwitch)
-                                        {
-                                            rightGazes = 0;
-                                            leftGazes = 0;
-                                            centerGazes = 0;
-                                            rightPart.style.display = "none"
-                                            centerPart.style.display = "none"
-                                            leftPart.style.display = "inline"
-                                        }
+                                        if(leftGazes > gazesToSwitch) setTimeout(switchImage, 1000, 'left')
                                     }
                                     else
                                     {
                                         rightGazes++;
                                         // console.log('==== right gaze ====')
-                                        if(rightGazes > gazesToSwitch)
-                                        {
-                                            leftGazes = 0;
-                                            rightGazes = 0;
-                                            centerGazes = 0;
-                                            leftPart.style.display = "none"
-                                            centerPart.style.display = "none"
-                                            rightPart.style.display = "inline"
-                                        }
+                                        if(rightGazes > gazesToSwitch) setTimeout(switchImage, 1000, 'right')
                                     }
 
                                 }
